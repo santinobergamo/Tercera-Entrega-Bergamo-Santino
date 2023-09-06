@@ -10,10 +10,10 @@ def producto(req, producto, codigo):
     productos = Producto(NombreProducto=producto, codigo=codigo)
     productos.save()
 
+def index(req):
 
-def inicio(req):
+    return render(req, 'index.html')
 
-    return render(req, 'inicio.html')
 
 def productos(req):
 
@@ -31,7 +31,7 @@ def prodFormulario(req):
             data = formulario.cleaned_data
             producto = Producto(nombre=data["NombreProducto"], codigo=data["codigo"])
             producto.save()
-            return render(req, 'inicio.html')
+            return render(req, 'index.html')
     else:
         formulario = ProductoFormulario()  
 

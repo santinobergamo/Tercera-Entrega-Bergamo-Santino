@@ -3,7 +3,7 @@ from django.db import models
 class Producto (models.Model):
     
     nombre = models.CharField(max_length=40)
-    codigo = models.CharField(max_length=40)
+    codigo = models.CharField(max_length=10)
 
 class Usuario (models.Model):
     nombre = models.CharField(max_length=40)
