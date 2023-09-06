@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+
+{% block contenidoQueCambia %}
+
+<p> Resultados de la busqueda del codigo del producto</p>
+
+{% if productos %}
+    
+    <ul>
+        {% for producto in productos  %}
+            <li>{{producto}}</li>
+        {% endfor %}
+    </ul>
+
+{% endif %}
+
+{{producto}}
+
+{% endblock contenidoQueCambia %}
+    

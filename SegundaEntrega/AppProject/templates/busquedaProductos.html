@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+
+
+{% block contenidoQueCambia %}
+    <form action="{% url 'buscarProducto' %}" method="get">         
+        
+        <p>Codgio: <input type="number" name="codigo"></p>
+
+        <button type="submit"> Enviar </button>
+    </form>
+
+{% endblock contenidoQueCambia %}
+    
