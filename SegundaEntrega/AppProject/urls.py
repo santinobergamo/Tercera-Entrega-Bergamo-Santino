@@ -5,7 +5,10 @@ urlpatterns = [
     path('', views.index, name='index' ),
     path('productos/', views.productos, name="productos"),
     path('carrito/', views.carrito, name="carrito" ),
-    path('formulario/', views.prodFormulario, name="prodFormulario"),
-    path('buscarProducto', views.busquedaProducto, name="buscarProducto"),
-    path('resultadoBusqueda/', views.buscar, name="resultadoBusqueda" )
+    path('formulario', views.prodFormulario, name="prodFormulario"),
+    path('buscarProducto', views.buscar, name="buscarProducto"),
+    path('resultadoBusqueda/', views.busquedaProducto, name="resultadoBusqueda" ),
+    path('mostrarFormularioBusqueda/', views.mostrar_formulario_busqueda, name='mostrarFormularioBusqueda'),
+
+
 ]

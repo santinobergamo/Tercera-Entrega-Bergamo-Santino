@@ -39,15 +39,19 @@ def prodFormulario(req):
 
 def buscar(req):
     codigo = req.GET.get("codigo")  
-    
     if codigo:
-        producto = Producto.objects.filter(camada__icontains=codigo)
+        producto = Producto.objects.filter(codigo=codigo)  
         return render(req, "resultadosBusqueda.html", {"producto": producto})
     else:
         return HttpResponse('Debe agregar un código de producto')
 
+
 def busquedaProducto(req):
     
-    return render (req, "busquedaProductos.html")
+    return render (req, "resultadosBusqueda.html")
+
+
+def mostrar_formulario_busqueda(req):
+    return render(req, 'formulario_busqueda.html')
 
 # Create your views here.
