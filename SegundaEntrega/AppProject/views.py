@@ -1,14 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
 from .models import *
 from .forms import ProductoFormulario
 
 #Base de datos!
-
-def producto(req, producto, codigo):
-
-    productos = Producto(NombreProducto=producto, codigo=codigo)
-    productos.save()
 
 def index(req):
 
@@ -17,7 +12,10 @@ def index(req):
 
 def productos(req):
 
-    return render(req, "productos.html")
+    productos = Producto.objects.all()
+
+    return render(req, "listaProductos.html", {"productos": productos})
+
 
 def carrito(req):
 
@@ -29,7 +27,7 @@ def prodFormulario(req):
         formulario = ProductoFormulario(req.POST)
         if formulario.is_valid():
             data = formulario.cleaned_data
-            producto = Producto(nombre=data["NombreProducto"], codigo=data["codigo"])
+            producto = Producto(nombre=data["nombre"], codigo=data["codigo"])
             producto.save()
             return render(req, 'index.html')
     else:
@@ -37,11 +35,15 @@ def prodFormulario(req):
 
     return render(req, "formulario.html", {"formulario": formulario})
 
+
 def buscar(req):
     codigo = req.GET.get("codigo")  
     if codigo:
-        producto = Producto.objects.filter(codigo=codigo)  
-        return render(req, "resultadosBusqueda.html", {"producto": producto})
+        productos = Producto.objects.filter(codigo=codigo)
+        if productos.exists():
+            return render(req, "resultadosBusqueda.html", {"productos": productos})
+        else:
+            return HttpResponse('No se encontró ningún producto con ese código')
     else:
         return HttpResponse('Debe agregar un código de producto')
 
@@ -53,5 +55,45 @@ def busquedaProducto(req):
 
 def mostrar_formulario_busqueda(req):
     return render(req, 'formulario_busqueda.html')
+
+
+def editarProducto(req, id):
+    try:
+        producto = Producto.objects.get(id=id)
+
+        if req.method == 'POST':
+            miFormulario = ProductoFormulario(req.POST)
+            if miFormulario.is_valid(): 
+                data = miFormulario.cleaned_data
+                producto.nombre = data["nombre"]
+                producto.codigo = data["codigo"]
+                producto.save()
+                return render(req, "index.html")
+        else:
+            miFormulario = ProductoFormulario(initial={
+                "nombre": producto.nombre,
+                "codigo": producto.codigo,
+            })
+            return render(req, "editarProducto.html", {"miFormulario": miFormulario, "id": producto.id})  
+    except Producto.DoesNotExist:
+        return HttpResponse('No se encontró ningún producto con ese ID')
+
+    
+def eliminarProducto(req, id):
+
+    if req.method == 'POST':
+
+        producto = Producto.objects.get(id=id)
+        producto.delete()
+
+        profesores = Producto.objects.all()
+
+        return render(req, "listaProductos.html", {"productos" : productos})
+
+
+
+
+
+
 
 # Create your views here.

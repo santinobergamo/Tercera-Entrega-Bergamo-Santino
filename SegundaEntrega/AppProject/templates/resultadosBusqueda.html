@@ -1,13 +1,12 @@
 {% extends 'index.html' %}
-
 {% block contenidoQueCambia %}
 
 <p>Resultados de la búsqueda del código del producto:</p>
 
-{% if producto %}
+{% if productos %}
     <ul>
-        {% for p in producto %}
-            <li>{{ p.NombreProducto }} - {{ p.codigo }}</li>
+        {% for producto in productos %}
+            <li style="background-color: #212529; color: white;"> {{ producto.NombreProducto }} - {{ producto.codigo }}</li>
         {% endfor %}
     </ul>
 {% else %}

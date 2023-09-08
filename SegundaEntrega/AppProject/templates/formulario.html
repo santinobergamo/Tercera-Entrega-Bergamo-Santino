@@ -1,15 +1,13 @@
 {% extends 'index.html' %}
 
-
 {% block contenidoQueCambia %}
-
-<form action="{% url 'prodFormulario' %}" method="post">{% csrf_token %}
-    
-    {{ formulario.as_p }}
-    
-    <button type="submit">Enviar</button>
-</form>  
-
+    <form action="{% url 'prodFormulario' %}" method="post" style="background-color: #212529;">
+        {% csrf_token %}
+        
+        <div style="color: white;">
+            {{ formulario.as_p }}
+        </div>
+        
+        <button type="submit">Enviar</button>
+    </form>
 {% endblock contenidoQueCambia %}
-    
-
