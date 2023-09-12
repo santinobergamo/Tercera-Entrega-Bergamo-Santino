@@ -29,22 +29,20 @@ def prodFormulario(req):
             data = formulario.cleaned_data
             producto = Producto(nombre=data["nombre"], codigo=data["codigo"])
             producto.save()
-            return render(req, 'index.html')
+            return render(req, "index.html")
     else:
-        formulario = ProductoFormulario()  
+        formulario = ProductoFormulario()
 
     return render(req, "formulario.html", {"formulario": formulario})
 
 
-def buscar(req: HttpRequest):
-
+def buscar(req):
     codigo = req.GET.get("codigo")
     if codigo:
         try:
-            buscar_producto = BuscarProducto.objects.get(codigo=codigo)
-            producto = buscar_producto.producto
-            return render(req, "resultadosBusqueda.html", {"productos": [producto]})
-        except BuscarProducto.DoesNotExist:
+            buscar_producto = Producto.objects.get(codigo=codigo)
+            return render(req, "resultadosBusqueda.html", {"productos": [buscar_producto]})
+        except Producto.DoesNotExist:
             return HttpResponse('No se encontró ningún producto con ese código')
     else:
         return HttpResponse('Debe agregar un código de producto')
