@@ -16,6 +16,8 @@
                     </form>
                 </div>
             </li>
+        {% empty %}
+            <p>No se encontraron productos en stock.</p>
         {% endfor %}
     </ul>
 {% endblock contenidoQueCambia %}

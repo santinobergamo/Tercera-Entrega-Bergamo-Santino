@@ -36,13 +36,15 @@ def prodFormulario(req):
     return render(req, "formulario.html", {"formulario": formulario})
 
 
-def buscar(req):
-    codigo = req.GET.get("codigo")  
+def buscar(req: HttpRequest):
+
+    codigo = req.GET.get("codigo")
     if codigo:
-        productos = Producto.objects.filter(codigo=codigo)
-        if productos.exists():
-            return render(req, "resultadosBusqueda.html", {"productos": productos})
-        else:
+        try:
+            buscar_producto = BuscarProducto.objects.get(codigo=codigo)
+            producto = buscar_producto.producto
+            return render(req, "resultadosBusqueda.html", {"productos": [producto]})
+        except BuscarProducto.DoesNotExist:
             return HttpResponse('No se encontró ningún producto con ese código')
     else:
         return HttpResponse('Debe agregar un código de producto')
@@ -86,7 +88,7 @@ def eliminarProducto(req, id):
         producto = Producto.objects.get(id=id)
         producto.delete()
 
-        profesores = Producto.objects.all()
+        producto = Producto.objects.all()
 
         return render(req, "listaProductos.html", {"productos" : productos})
 

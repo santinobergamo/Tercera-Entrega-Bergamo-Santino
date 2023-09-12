@@ -6,11 +6,11 @@
 {% if productos %}
     <ul>
         {% for producto in productos %}
-            <li style="background-color: #212529; color: white;"> {{ producto.NombreProducto }} - {{ producto.codigo }}</li>
+            <li style="background-color: #212529; color: white;"> {{ producto.nombre }} - {{ producto.codigo }}</li>
         {% endfor %}
     </ul>
 {% else %}
-    <p>No se encontraron productos con el código proporcionado.</p>
+    <p style="background-color: #212529; color: white;">No se encontraron productos con el código proporcionado.</p>
 {% endif %}
 
 {% endblock contenidoQueCambia %}

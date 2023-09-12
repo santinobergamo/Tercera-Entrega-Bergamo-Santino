@@ -1,16 +1,16 @@
 from django.db import models
 
-class Producto (models.Model):
-    
+class Producto(models.Model):
     nombre = models.CharField(max_length=40)
     codigo = models.CharField(max_length=10)
 
-class Usuario (models.Model):
-    nombre = models.CharField(max_length=40)
-    apellido = models.CharField(max_length=40)
-    email = models.EmailField(max_length=40)
+class BuscarProducto(models.Model):
+    codigo = models.CharField(max_length=40)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, default=None)
 
-class Orden (models.Model):
-    NumerodeOrden = models.CharField(max_length=10)
+
+class IngresarProdcuto (models.Model):
+    nombre = models.CharField(max_length=40)
+    codigo = models.CharField(max_length=40)
 
 # Create your models here.
