@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
-from .models import *
+from .models import Producto, PedidoCompra
 from .forms import ProductoFormulario, PedidoCompraForm
 
 #Base de datos!
@@ -99,7 +99,7 @@ def crear_pedido_compra(request):
             return redirect('lista_pedidoscompra')
     else:
         pedido_form = PedidoCompraForm()
-    return render(request, 'crear_pedidocompra.html', {'pedido_form': pedido_form})
+    return render(request, 'crear_pedido_compra.html', {'pedido_form': pedido_form})
 
 
 def lista_pedidos_compra(request):
