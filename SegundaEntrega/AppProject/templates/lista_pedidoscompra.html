@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Lista de Pedidos de Compra</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Número de Pedido</th>
+        <th>Proveedor</th>
+        <th>Fecha de Pedido</th>
+        <th>Fecha de Entrega Esperada</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for pedido in pedidos %}
+        <tr>
+          <td>{{ pedido.id }}</td>
+          <td>{{ pedido.proveedor }}</td>
+          <td>{{ pedido.fecha_pedido }}</td>
+          <td>{{ pedido.fecha_entrega_esperada }}</td>
+          <td>
+            <a href="{% url 'editar_pedido_compra' pedido.id %}">Editar</a>
+            <a href="{% url 'eliminar_pedido_compra' pedido.id %}">Eliminar</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

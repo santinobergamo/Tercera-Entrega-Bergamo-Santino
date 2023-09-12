@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+
+{% block contenidoQueCambia %}
+  
+<h2>Crear Pedido de Compra</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ pedido_form.as_p }}
+    {{ detalle_formset.as_table }}
+    <input type="submit" value="Guardar Pedido de Compra">
+  </form>
+{% endblock contenidoQueCambia %}

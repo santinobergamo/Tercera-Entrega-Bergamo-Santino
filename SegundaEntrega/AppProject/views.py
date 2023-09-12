@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
 from .models import *
-from .forms import ProductoFormulario
+from .forms import ProductoFormulario, PedidoCompraForm
 
 #Base de datos!
 
@@ -89,6 +89,22 @@ def eliminarProducto(req, id):
         producto = Producto.objects.all()
 
         return render(req, "listaProductos.html", {"productos" : productos})
+
+
+def crear_pedido_compra(request):
+    if request.method == 'POST':
+        pedido_form = PedidoCompraForm(request.POST)
+        if pedido_form.is_valid():
+            pedido = pedido_form.save()
+            return redirect('lista_pedidoscompra')
+    else:
+        pedido_form = PedidoCompraForm()
+    return render(request, 'crear_pedidocompra.html', {'pedido_form': pedido_form})
+
+
+def lista_pedidos_compra(request):
+    pedidos = PedidoCompra.objects.all()
+    return render(request, 'lista_pedidoscompra.html', {'pedidos': pedidos})
 
 
 
