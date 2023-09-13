@@ -1,23 +1,25 @@
 {% extends 'index.html' %}
 
 {% block contenidoQueCambia %}
-    
-    <ul>
-        {% for producto in productos %}
-            <li style="background-color: #212529; color: white;">
-                {{ producto.nombre }} - {{ producto.codigo }}
-                <div style="display: flex; column-gap: 1.5px;">
-                    <form action="{% url 'editarProducto' producto.id %}" method="get" style="display: inline;">
-                        <button type="submit">Editar</button>
-                    </form>
-                    <form action="{% url 'eliminarProducto' producto.id %}" method="post" style="display: inline;">
-                        {% csrf_token %}
-                        <button type="submit">Eliminar</button>
-                    </form>
-                </div>
-            </li>
-        {% empty %}
-            <p>No se encontraron productos en stock.</p>
-        {% endfor %}
-    </ul>
+    <div class="container" style="background-color: #212529; color: white;">
+        <h2 class="titulo">Lista de Productos</h2>
+        <ul>
+            {% for producto in productos %}
+                <li>
+                    {{ producto.nombre }} - {{ producto.codigo }}
+                    <div style="display: flex; column-gap: 1.5px;">
+                        <form action="{% url 'editarProducto' producto.id %}" method="get" style="display: inline;">
+                            <button type="submit" class="btn btn-primary">Editar</button>
+                        </form>
+                        <form action="{% url 'eliminarProducto' producto.id %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </div>
+                </li>
+            {% empty %}
+                <p>No se encontraron productos en stock.</p>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock contenidoQueCambia %}

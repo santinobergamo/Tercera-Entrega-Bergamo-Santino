@@ -16,16 +16,26 @@
     <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'productos' %}">Productos</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'productos' %}">Productos</a></li>
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'mostrarFormularioBusqueda' %}">Buscar Producto</a></li>
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'prodFormulario' %}">Ingresar Producto</a></li>
+                </ul>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'crear_proveedor' %}">Agregar Proveedor</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'crear_pedido_compra' %}">Crear Pedido de Compra</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'lista_pedidoscompra' %}" class="btn btn-primary">Lista de compras a Proveedores</a>
                 </ul>
             </div>
         </div>
     </nav>
+    
+    
+    
     <!-- Header - set the background image for the header in the line below-->
     <header class="py-5 bg-image-full" style="background-image: url('https://source.unsplash.com/wfh8dDlNFOk/1600x900')">
         <div class="text-center my-5">

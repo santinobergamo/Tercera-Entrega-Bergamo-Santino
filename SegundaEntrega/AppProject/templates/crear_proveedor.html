@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+
+{% block contenidoQueCambia %}
+    <h2 class="titulo">Crear Proveedor</h2>
+    <form method="post" class="my-4" style="background-color: #212529; padding: 20px; color: white;">
+        {% csrf_token %}
+        
+        <!-- Campo para el nombre del proveedor -->
+        <div class="form-group mb-3">
+            <label for="{{ proveedor_form.nombre.id_for_label }}">Nombre:</label>
+            {{ proveedor_form.nombre }}
+        </div>
+
+        <!-- Campo para la dirección del proveedor -->
+        <div class="form-group mb-3">
+            <label for="{{ proveedor_form.direccion.id_for_label }}">Dirección:</label>
+            {{ proveedor_form.direccion }}
+        </div>
+
+        <!-- Campo para el teléfono del proveedor -->
+        <div class="form-group mb-3">
+            <label for="{{ proveedor_form.telefono.id_for_label }}">Teléfono:</label>
+            {{ proveedor_form.telefono }}
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Guardar Proveedor">
+    </form>
+{% endblock contenidoQueCambia %}

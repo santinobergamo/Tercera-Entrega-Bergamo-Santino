@@ -1,16 +1,15 @@
 {% extends 'index.html' %}
+
 {% block contenidoQueCambia %}
+    <p style="background-color: #212529; color: white;">Resultados de la búsqueda del código del producto:</p>
 
-<p>Resultados de la búsqueda del código del producto:</p>
-
-{% if productos %}
-    <ul>
-        {% for producto in productos %}
-            <li style="background-color: #212529; color: white;"> {{ producto.nombre }} - {{ producto.codigo }}</li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p style="background-color: #212529; color: white;">No se encontraron productos con el código proporcionado.</p>
-{% endif %}
-
+    {% if productos %}
+        <ul>
+            {% for producto in productos %}
+                <li style="background-color: #212529; color: white;"> {{ producto.nombre }} - {{ producto.codigo }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p style="background-color: #212529; color: white;">No se encontraron productos con el código proporcionado.</p>
+    {% endif %}
 {% endblock contenidoQueCambia %}

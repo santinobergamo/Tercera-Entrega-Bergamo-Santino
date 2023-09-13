@@ -1,12 +1,13 @@
 {% extends "index.html" %}
 
 {% block contenidoQueCambia %}
-  
-<h2>Crear Pedido de Compra</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ pedido_form.as_p }}
-    {{ detalle_formset.as_table }}
-    <input type="submit" value="Guardar Pedido de Compra">
-  </form>
+    <h2 class="titulo">Crear Pedido de Compra</h2>
+    <form method="post" class="my-4" style="background-color: #212529; padding: 20px; color: white;">
+        {% csrf_token %}
+        
+        {{ pedido_form.as_p }}
+        {{ detalle_formset.as_table }}
+
+        <input type="submit" class="btn btn-primary" value="Guardar Pedido de Compra">
+    </form>
 {% endblock contenidoQueCambia %}

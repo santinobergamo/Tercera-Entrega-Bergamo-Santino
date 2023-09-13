@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 {% block contenidoQueCambia %}
     <form action="{% url 'buscarProducto' %}" method="get" style="background-color: #212529;">
-        <p style="color: white;">Código: <input type="number" name="codigo"></p>
-        <button type="submit" style="color: white;">Enviar</button>
+        <p style="color: white;">Código: <input type="number" name="codigo" style="color: white;"></p>
+        <button type="submit" style="color: white; background-color: blue !important;">Enviar</button>
     </form>
 {% endblock contenidoQueCambia %}

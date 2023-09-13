@@ -1,17 +1,17 @@
+# forms.py
 from django import forms
-from .models import *
+from .models import PedidoCompra, Proveedor
 
 class ProductoFormulario(forms.Form):
-
     nombre = forms.CharField(max_length=40)
-    codigo = forms.IntegerField()
+    codigo = forms.CharField(max_length=10)
 
 class PedidoCompraForm(forms.ModelForm):
     class Meta:
         model = PedidoCompra
-        fields = ['proveedor', 'fecha_pedido', 'fecha_entrega_esperada']
+        fields = ['proveedor', 'fecha_pedido', 'fecha_entrega_esperada', 'nombre_producto', 'codigo_producto', 'cantidad', 'precio_unitario']
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['fecha_pedido'].widget.attrs['class'] = 'datepicker'
-        self.fields['fecha_entrega_esperada'].widget.attrs['class'] = 'datepicker'
+class ProveedorForm(forms.ModelForm):
+    class Meta:
+        model = Proveedor
+        fields = ['nombre', 'direccion', 'telefono']

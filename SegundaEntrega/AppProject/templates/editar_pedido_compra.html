@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+
+{% block contenidoQueCambia %}
+    <h2 style="color: white;">Editar Pedido de Compra</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="fecha_pedido">Fecha de Pedido:</label>
+        <input type="date" id="fecha_pedido" name="fecha_pedido" value="{{ pedido.fecha_pedido }}"><br>
+        <label for="fecha_entrega_esperada">Fecha de Entrega Esperada:</label>
+        <input type="date" id="fecha_entrega_esperada" name="fecha_entrega_esperada" value="{{ pedido.fecha_entrega_esperada }}"><br>
+        <button type="submit">Guardar Cambios</button>
+    </form>
+    <a href="{% url 'lista_pedidoscompra' %}" style="color: white;">Volver a la Lista de Pedidos de Compra</a>
+{% endblock contenidoQueCambia %}

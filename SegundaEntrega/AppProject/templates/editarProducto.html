@@ -1,12 +1,22 @@
 {% extends 'index.html' %}
 
-
 {% block contenidoQueCambia %}
 
-<form action="{% url 'editarProducto' id %}" method="post">{% csrf_token %}
-    {{ miFormulario.as_div }}
-    <button type="submit">Actualizar</button>
-</form>
+<div class="container" style="background-color: #212529; color: white;">
+    <h2 class="titulo">Editar Producto</h2>
+    <form action="{% url 'editarProducto' id %}" method="post">
+        {% csrf_token %}
+        <div class="form-group" style="margin-bottom: 10px;">
+            <label for="{{ miFormulario.nombre.id_for_label }}" style="color: white;">Nombre:</label>
+            {{ miFormulario.nombre }}
+        </div>
+        <div class="form-group" style="margin-bottom: 10px;">
+            <label for="{{ miFormulario.codigo.id_for_label }}" style="color: white;">Código:</label>
+            {{ miFormulario.codigo }}
+        </div>
+        <!-- Agrega más campos del formulario aquí siguiendo el mismo patrón -->
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+    </form>
+</div>
 
 {% endblock contenidoQueCambia %}
-    
